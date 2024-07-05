@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2113.65">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'PingFang TC'}
+    span.s1 {font: 12.0px Helvetica}
+    span.s2 {font: 12.0px 'PingFang TC'}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1">&lt;title&gt;Imagination Prompt Game&lt;/title&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>font-family: Arial, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>#prompt {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>font-size: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>margin: 50px 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>#timer {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>font-size: 32px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Imagination Prompt Game&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="prompt"&gt;Loading prompt...&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="timer"&gt;30&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button id="startBtn" onclick="startGame()"&gt;Start&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button id="pauseBtn" onclick="pauseGame()" disabled&gt;Pause&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let prompts = [</p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span>"</span>一個動物，頭像雞，身體像鳳梨，腳像鴨子的腳，在廣場上跳舞。<span class="s1">",</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span>"</span>一個外星人，把時間暫停，拿著放大鏡在觀察人類在做什麼。<span class="s1">",</span></p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">            </span>"</span>一張超級英雄，用有一個可以透視蔬菜的能力。<span class="s1">",</span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Add more prompts here...</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>let currentIndex = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let timer;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let timeLeft = 30;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function displayPrompt() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("prompt").textContent = prompts[currentIndex];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>timeLeft = 30;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("timer").textContent = timeLeft;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function startGame() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>displayPrompt();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>timer = setInterval(updateTimer, 1000);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("startBtn").disabled = true;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("pauseBtn").disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function pauseGame() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>clearInterval(timer);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("startBtn").disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("pauseBtn").disabled = true;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function updateTimer() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>timeLeft--;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById("timer").textContent = timeLeft;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (timeLeft === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>clearInterval(timer);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>currentIndex++;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (currentIndex &lt; prompts.length) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>displayPrompt();</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>timer = setInterval(updateTimer, 1000);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById("prompt").textContent = "<span class="s2">遊戲結束！</span>";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById("timer").textContent = "";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById("startBtn").disabled = true;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById("pauseBtn").disabled = true;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
